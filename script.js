@@ -6,22 +6,22 @@ $(document).ready(function(){
   setInterval(updateClock, 1000);
   $(".buttonTimer").css('visibility', 'visible');
   $(".buttonTimer").mouseenter(function(){
-    $(".buttonTimer").fadeTo('fast' , 1);
+    $(".buttonTimer").stop(false,false).fadeTo('fast' , 1);
   });
   $(".buttonTimer").mouseleave(function(){
-    $(".buttonTimer").fadeTo('fast' , 0.2);
+    $(".buttonTimer").stop(false,false).fadeTo('fast' , 0.2);
   });
   $(".name").mouseenter(function(){
-    $(".name").fadeTo('slow' , 1);
+    $(".name").stop(false,false).fadeTo('slow' , 1);
   });
   $(".name").mouseleave(function(){
-    $(".name").fadeTo('slow' , 0.2);
+    $(".name").stop(false,false).fadeTo('slow' , 0.2);
   });
   $(".toggleHolder").mouseenter(function(){
-    $(".toggleHolder").fadeTo('fast' , 1);
+    $(".toggleHolder").stop(false,false).fadeTo('fast' , 1);
   });
   $(".toggleHolder").mouseleave(function(){
-    $(".toggleHolder").fadeTo('fast' , 0.2);
+    $(".toggleHolder").stop(false,false).fadeTo('fast' , 0.2);
   });
 });
 
@@ -34,8 +34,8 @@ $(".buttonTimer").click(function(){
   if (isUp == false) {
     $(".timer").css('visibility', 'visible');
     $(".timerEnd").css('visibility', 'visible');
-    $(".timer").animate({ top: '-100px' });
-    $(".timerEnd").animate({ top: '-100px' });
+    $(".timer").stop(false,false).animate({ top: '-100px' });
+    $(".timerEnd").stop(false,false).animate({ top: '-100px' });
     $(".timer").css('box-shadow', '0px 0px 75px #3e84ad');
     $(".timerEnd").css('box-shadow', '0px 0px 75px #3e84ad');
     isUp = true;
@@ -45,16 +45,16 @@ $(".buttonTimer").click(function(){
 
 $(".buttonToggle").click(function(){
   if (isUp == false) {
-    $(".timer").animate({ top: '-100px' });
-    $(".timerEnd").animate({ top: '-100px' });
+    $(".timer").stop(false,false).animate({ top: '-100px' });
+    $(".timerEnd").stop(false,false).animate({ top: '-100px' });
     $(".timer").css('box-shadow', '0px 0px 75px #3e84ad');
     $(".timerEnd").css('box-shadow', '0px 0px 75px #3e84ad');
     isUp = true;
     return;
   }
   if (isUp == true){
-    $(".timer").animate({ top: '10px' });
-    $(".timerEnd").animate({ top: '10px' });
+    $(".timer").stop(false,false).animate({ top: '10px' });
+    $(".timerEnd").stop(false,false).animate({ top: '10px' });
     $(".timer").css('box-shadow', '0px 0px 0px #3e84ad');
     $(".timerEnd").css('box-shadow', '0px 0px 0px #3e84ad');
     isUp = false;
