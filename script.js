@@ -84,6 +84,10 @@ function updateClock ( ){
       currentHours = "0" + currentHours;
     }
 
+    if(futureHours < 10){
+      futureHours = "0" + futureHours;
+    }
+
     if (currentSeconds < 10){
       currentSeconds = "0" + currentSeconds;
     }
