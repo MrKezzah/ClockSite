@@ -47,6 +47,8 @@ $(".buttonToggle").click(function(){
   if (isUp == false) {
     $(".timer").animate({ top: '-100px' });
     $(".timerEnd").animate({ top: '-100px' });
+    $(".timer").css('box-shadow', '0px 0px 75px #3e84ad');
+    $(".timerEnd").css('box-shadow', '0px 0px 75px #3e84ad');
     isUp = true;
     return;
   }
