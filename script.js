@@ -36,6 +36,8 @@ $(".buttonTimer").click(function(){
     $(".timerEnd").css('visibility', 'visible');
     $(".timer").animate({ top: '-100px' });
     $(".timerEnd").animate({ top: '-100px' });
+    $(".timer").css('box-shadow', '0px 0px 75px #3e84ad');
+    $(".timerEnd").css('box-shadow', '0px 0px 75px #3e84ad');
     isUp = true;
     return;
   }
@@ -51,6 +53,8 @@ $(".buttonToggle").click(function(){
   if (isUp == true){
     $(".timer").animate({ top: '10px' });
     $(".timerEnd").animate({ top: '10px' });
+    $(".timer").css('box-shadow', '0px 0px 0px #3e84ad');
+    $(".timerEnd").css('box-shadow', '0px 0px 0px #3e84ad');
     isUp = false;
     return;
   }
