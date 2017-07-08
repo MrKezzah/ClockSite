@@ -1,0 +1,212 @@
+/** {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  }*/
+
+  html{
+      font-family: 'Open Sans', sans-serif;
+      background-color: black;
+      user-select: none;
+      cursor: default;
+  }
+
+@font-face {
+  font-family: "alienEncounters";
+  src: url('fonts/Alien-Encounters-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Lazer84";
+  src: url('fonts/Lazer84.ttf') format('truetype');
+}
+
+.innerBox{
+  position: absolute;
+  margin: auto;
+  width: 644px;
+  height: 294px;
+  box-shadow: inset 0 0 100px #3e84ad;
+  border-radius: 0px 0px 35px 35px;
+}
+
+.main{
+  color: #FF6AD5;
+  text-align: center;
+  height: 300px;
+  width: 650px;
+  position: absolute;
+  margin: auto;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 0px 200px #3e84ad;
+  border-radius: 0px 0px 40px 40px;
+}
+
+.mainClock{
+  border: 3px solid #94D0FF;
+  border-radius: 0px 0px 40px 40px;
+  background-color: black;
+  width: 644px;
+  height: 294px;
+}
+
+h1{
+  top: 50%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+  position: relative;
+  margin: auto;
+  font-size: 148px;
+}
+
+h1,h4,h5{
+  font-family: "alienEncounters";
+  text-shadow: 0px 0px 30px #C774E8;
+  letter-spacing: 4px;
+}
+
+.clockHM{
+  width: 400px;
+}
+
+h4{
+  padding-left: 30px;
+  width: 80px;
+  font-size: 48px;
+  margin: auto;
+  display: inline-block;
+}
+
+
+.timer,.timerEnd{
+  z-index: -1;
+  visibility: hidden;
+  top: 0px;
+}
+
+.timer{
+  position: absolute;
+  left: 0;
+  margin: auto;
+  width: 175px;
+  background-color: black;
+  padding: 15px 15px 15px 15px;
+  border: 3px solid #94D0FF;
+  border-radius: 20px 20px 0px 0px;
+  box-shadow: 0px 0px 75px #3e84ad;;
+}
+
+.timerEnd{
+  position: absolute;
+  right: 0;
+  margin: auto;
+  width: 175px;
+  background-color: black;
+  padding: 15px 15px 15px 15px;
+  border: 3px solid #94D0FF;
+  border-radius: 20px 20px 0px 0px;
+  box-shadow: 0px 0px 75px #3e84ad;
+}
+
+.innerBoxTimer{
+  position: absolute;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0 0 50px #3e84ad;
+  border-radius: 20px 20px 0px 0px;
+  margin: 0 auto;
+  transform: translate(-15px, -15px);
+}
+
+h2{
+  font-family: "alienEncounters";
+  font-size: 18px;
+  margin-bottom: 0;
+  margin-top: 0;
+  letter-spacing: 2px;
+  text-shadow: 0px 0px 40px #C774E8;
+}
+
+h5{
+  font-size: 32px;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-shadow: 0px 0px 40px #C774E8;
+}
+
+.buttonTimer{
+  visibility: hidden;
+  user-select: none;
+  opacity: 0.2;
+  width: 115px;
+  font-family: "alienEncounters";
+  letter-spacing: 2px;
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  margin: 0 auto;
+  transform: translate(-50%, 0);
+  border: 3px solid #94D0FF;
+  border-radius: 8px;
+  padding: 5px 8px;
+  box-shadow: 0px 0px 75px #3e84ad;
+  text-shadow: 0px 0px 40px #C774E8;
+}
+
+.buttonTimer:hover{
+  cursor: pointer;
+}
+
+h3{
+  font-size: 20px;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.name{
+  cursor: default;
+  user-select: none;
+  font-size: 42px;
+  position: absolute;
+  margin: 0;
+  padding: 30px;
+  transform: translate(-50%, 0);
+  left: 50%;
+  bottom: 0;
+  font-family: "Lazer84";
+  opacity: 0.2;
+  color: #FF6AD5;
+  text-shadow: 2px 2px 1px #94FFF9, 5px 4px 1px #6D1585, 6px 5px 1px #205BDB, 0px 0px 60px #b24a95;
+}
+
+.name p{
+  margin: auto;
+}
+
+.toggleHolder{
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  opacity: 0.2;
+}
+
+.buttonToggle{
+  user-select: none;
+  text-align: center;
+  color: #FF6AD5;
+  width: 155px;
+  font-family: "alienEncounters";
+  margin: 0 auto;
+  border: 3px solid #94D0FF;
+  border-radius: 8px;
+  padding: 5px 8px;
+  box-shadow: 0px 0px 75px #3e84ad;
+  text-shadow: 0px 0px 40px #C774E8;
+}
+
+.buttonToggle:hover{
+  cursor: pointer;
+}
