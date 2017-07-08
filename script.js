@@ -26,6 +26,9 @@ $(document).ready(function(){
 });
 
 $(".buttonTimer").click(function(){
+  if ( $(".toggleHolder").css('visibility', 'hidden')) {
+      $(".toggleHolder").css('visibility', 'visible');
+  }
   $(".timerClock").html(currentTimeTab);
   $(".timerEndClock").html(futureTime);
   if (isUp == false) {
