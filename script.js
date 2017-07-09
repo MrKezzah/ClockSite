@@ -1,6 +1,10 @@
 var currentTimeTab;
 var futureTime;
+var settingsOut = false;
 var isUp = false;
+var endTime;
+
+// TODO: Clean-up repeated code in 'ready' and the click functions.
 
 $(document).ready(function(){
   setInterval(updateClock, 1000);
@@ -23,12 +27,21 @@ $(document).ready(function(){
   $(".toggleHolder").mouseleave(function(){
     $(".toggleHolder").stop(false,false).fadeTo('fast' , 0.2);
   });
+  $(".settingsHolder").mouseenter(function(){
+    $(".settingsHolder").stop(false,false).fadeTo('fast' , 1);
+  });
+  $(".settingsHolder").mouseleave(function(){
+    $(".settingsHolder").stop(false,false).fadeTo('fast' , 0.2);
+  });
 });
 
 $(".buttonTimer").click(function(){
   if ( $(".toggleHolder").css('visibility', 'hidden')) {
       $(".toggleHolder").css('visibility', 'visible');
   }
+  if ( $(".settingsHolder").css('visibility', 'hidden')) {
+  $(".settingsHolder").css('visibility', 'visible');
+}
   $(".timerClock").html(currentTimeTab);
   $(".timerEndClock").html(futureTime);
   if (isUp == false) {
@@ -41,7 +54,8 @@ $(".buttonTimer").click(function(){
     $(".timerEnd").css('box-shadow', '0px 0px 75px #3e84ad');
     $(".timer").css('background-color', 'black');
     $(".timerEnd").css('background-color', 'black');
-    $("h5").css('text-shadow', '0px 0px 40px #C774E8');
+    $("timer").css('text-shadow', '0px 0px 40px #C774E8');
+    $("timerEnd").css('text-shadow', '0px 0px 40px #C774E8');
     isUp = true;
     return;
   }
@@ -56,7 +70,8 @@ $(".buttonToggle").click(function(){
     $(".timer").css('background-color', 'black');
     $(".timerEnd").css('background-color', 'black');
     $(".innerBoxTimer").css('visibility', 'visible');
-    $("h5").css('text-shadow', '0px 0px 40px #C774E8');
+    $("timer").css('text-shadow', '0px 0px 40px #C774E8');
+    $("timerEnd").css('text-shadow', '0px 0px 40px #C774E8');
     isUp = true;
     return;
   }
@@ -68,20 +83,54 @@ $(".buttonToggle").click(function(){
     $(".timerEnd").css('box-shadow', '0px 0px 0px #3e84ad');
     $(".timer").css('background-color', 'transparent');
     $(".timerEnd").css('background-color', 'transparent');
-    $("h5").css('text-shadow', '0px 0px 0px #C774E8');
+    $("timer").css('text-shadow', '0px 0px 0px #C774E8');
+    $("timerEnd").css('text-shadow', '0px 0px 0px #C774E8');
     isUp = false;
+    return;
+  }
+});
+
+$(".buttonSettings").click(function(){
+  if (settingsOut == false){
+    $(".timerSettings").stop(false,false).animate({ right: '-225px' });
+    $(".timerSettings").css('visibility', 'visible');
+    $(".innerBoxSettings").css('visibility', 'visible');
+    $(".timerSettings").css('background-color', 'black');
+    $(".timerSettings").css('box-shadow', '0px 0px 75px #3e84ad');
+    $(".timerSettings").css('text-shadow', '0px 0px 40px #C774E8');
+    settingsOut = true;
+    return;
+  }
+  if (settingsOut == true){
+    $(".timerSettings").stop(false,false).animate({ right: '20px' });
+    $(".innerBoxSettings").css('visibility', 'hidden');
+    $(".timerSettings").css('background-color', 'transparent');
+    $(".timerSettings").css('box-shadow', '0px 0px 0px #3e84ad');
+    $(".timerSettings").css('text-shadow', '0px 0px 0px #C774E8');
+    settingsOut = false;
     return;
   }
 });
 
 function updateClock ( ){
  	  currentTime = new Date ( );
+    endTime = $("#endTime").val();
   	var currentHours = currentTime.getHours ( );
   	var currentMinutes = currentTime.getMinutes ( );
   	var currentSeconds = currentTime.getSeconds ( );
     //Have to use currentTime.getHours again for futureHours because currentHours gets turned into a string down \/\/ there from 1am-9am and 1pm-9pm, and you end up with 081:24:00pm
     var futureHours = currentTime.getHours() + 1;
-    var futureMinutes = currentMinutes + 5;
+    var futureMinutes = currentTime.getMinutes() + parseInt(endTime);
+
+    if(endTime >60){
+      endTime = 60;
+      $("#endTime").val(endTime);
+    }
+
+    if(endTime < 0){
+      endTime = 0;
+      $("#endTime").val(endTime);
+    }
 
     if (currentHours > 12 || futureHours > 12){
       currentHours = currentHours - 12;
@@ -116,6 +165,7 @@ function updateClock ( ){
       futureMinutes = futureMinutes - 60;
       futureTime = futureHours + ":0" + futureMinutes + ":" + currentSeconds;
     }
+
 
     else{
       futureTime = currentHours + ":" + futureMinutes + ":" + currentSeconds;
