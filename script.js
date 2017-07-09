@@ -34,10 +34,14 @@ $(".buttonTimer").click(function(){
   if (isUp == false) {
     $(".timer").css('visibility', 'visible');
     $(".timerEnd").css('visibility', 'visible');
+    $(".innerBoxTimer").css('visibility', 'visible');
     $(".timer").stop(false,false).animate({ top: '-100px' });
     $(".timerEnd").stop(false,false).animate({ top: '-100px' });
     $(".timer").css('box-shadow', '0px 0px 75px #3e84ad');
     $(".timerEnd").css('box-shadow', '0px 0px 75px #3e84ad');
+    $(".timer").css('background-color', 'black');
+    $(".timerEnd").css('background-color', 'black');
+    $("h5").css('text-shadow', '0px 0px 40px #C774E8');
     isUp = true;
     return;
   }
@@ -49,14 +53,22 @@ $(".buttonToggle").click(function(){
     $(".timerEnd").stop(false,false).animate({ top: '-100px' });
     $(".timer").css('box-shadow', '0px 0px 75px #3e84ad');
     $(".timerEnd").css('box-shadow', '0px 0px 75px #3e84ad');
+    $(".timer").css('background-color', 'black');
+    $(".timerEnd").css('background-color', 'black');
+    $(".innerBoxTimer").css('visibility', 'visible');
+    $("h5").css('text-shadow', '0px 0px 40px #C774E8');
     isUp = true;
     return;
   }
   if (isUp == true){
     $(".timer").stop(false,false).animate({ top: '10px' });
     $(".timerEnd").stop(false,false).animate({ top: '10px' });
+    $(".innerBoxTimer").css('visibility', 'hidden');
     $(".timer").css('box-shadow', '0px 0px 0px #3e84ad');
     $(".timerEnd").css('box-shadow', '0px 0px 0px #3e84ad');
+    $(".timer").css('background-color', 'transparent');
+    $(".timerEnd").css('background-color', 'transparent');
+    $("h5").css('text-shadow', '0px 0px 0px #C774E8');
     isUp = false;
     return;
   }
