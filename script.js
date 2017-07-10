@@ -8,7 +8,7 @@ var endTime;
 
 $(document).ready(function(){
   setInterval(updateClock, 1000);
-  toggleVisibility('.buttonTimer' /*false*/);
+  visibilityOn('.buttonTimer');
   $(".buttonTimer").mouseenter(function(){
     mouseFade(".buttonTimer", "fast", 1);
   });
@@ -39,36 +39,53 @@ function mouseFade(element, speed, opacity){
   $(element).stop(false,false).fadeTo(speed , opacity);
 }
 
-function toggleVisibility(element /*toggleable*/){
-  if($(element).css('visibility', 'hidden')){
-    $(element).css('visibility', 'visible');
+function visibilityOn(element){
+  $(element).css('visibility', 'visible');
+}
+
+function visibilityOff(element){
+  $(element).css('visibility', 'hidden');
+}
+
+function setShadowOn(element, shadowType) {
+  if(shadowType == "box"){
+    $(element).css('box-shadow', '0px 0px 75px #3e84ad');
   }
-  else if ($(element).css('visibility', 'visible')) {
-    $(element).css('visibility', 'hidden');
+  if(shadowType == "text"){
+    $(element).css('text-shadow', '0px 0px 40px #C774E8');
   }
 }
 
-$(".buttonTimer").click(function(){
-  if ( $(".toggleHolder").css('visibility', 'hidden')) {
-      $(".toggleHolder").css('visibility', 'visible');
+function setShadowOff(element, shadowType) {
+  if(shadowType == "box"){
+    $(element).css('box-shadow', '0px 0px 0px #3e84ad');
   }
-  if ( $(".settingsHolder").css('visibility', 'hidden')) {
-  $(".settingsHolder").css('visibility', 'visible');
+  if(shadowType == "text"){
+    $(element).css('text-shadow', '0px 0px 0px #C774E8');
+  }
 }
+
+function setBackground(element, colour) {
+  $(element).css('background-color', colour);
+}
+
+$(".buttonTimer").click(function(){
   $(".timerClock").html(currentTimeTab);
   $(".timerEndClock").html(futureTime);
+  visibilityOn(".toggleHolder");
+  visibilityOn(".settingsHolder");
   if (isUp == false) {
-    $(".timer").css('visibility', 'visible');
-    $(".timerEnd").css('visibility', 'visible');
-    $(".innerBoxTimer").css('visibility', 'visible');
+    visibilityOn(".timer");
+    visibilityOn(".timerEnd");
     $(".timer").stop(false,false).animate({ top: '-100px' });
     $(".timerEnd").stop(false,false).animate({ top: '-100px' });
-    $(".timer").css('box-shadow', '0px 0px 75px #3e84ad');
-    $(".timerEnd").css('box-shadow', '0px 0px 75px #3e84ad');
-    $(".timer").css('background-color', 'black');
-    $(".timerEnd").css('background-color', 'black');
-    $("timer").css('text-shadow', '0px 0px 40px #C774E8');
-    $("timerEnd").css('text-shadow', '0px 0px 40px #C774E8');
+    visibilityOn(".innerBoxTimer");
+    setShadowOn(".timer", "box");
+    setShadowOn(".timerEnd", "box");
+    setShadowOn(".timer", "text");
+    setShadowOn(".timerEnd", "text");
+    setBackground(".timer", 'black');
+    setBackground(".timerEnd", 'black');
     isUp = true;
     return;
   }
@@ -78,26 +95,26 @@ $(".buttonToggle").click(function(){
   if (isUp == false) {
     $(".timer").stop(false,false).animate({ top: '-100px' });
     $(".timerEnd").stop(false,false).animate({ top: '-100px' });
-    $(".timer").css('box-shadow', '0px 0px 75px #3e84ad');
-    $(".timerEnd").css('box-shadow', '0px 0px 75px #3e84ad');
-    $(".timer").css('background-color', 'black');
-    $(".timerEnd").css('background-color', 'black');
-    $(".innerBoxTimer").css('visibility', 'visible');
-    $("timer").css('text-shadow', '0px 0px 40px #C774E8');
-    $("timerEnd").css('text-shadow', '0px 0px 40px #C774E8');
+    visibilityOn(".innerBoxTimer");
+    setShadowOn(".timer", "box");
+    setShadowOn(".timerEnd", "box");
+    setShadowOn(".timer", "text");
+    setShadowOn(".timerEnd", "text");
+    setBackground(".timer", 'black');
+    setBackground(".timerEnd", 'black');
     isUp = true;
     return;
   }
   if (isUp == true){
     $(".timer").stop(false,false).animate({ top: '10px' });
     $(".timerEnd").stop(false,false).animate({ top: '10px' });
-    $(".innerBoxTimer").css('visibility', 'hidden');
-    $(".timer").css('box-shadow', '0px 0px 0px #3e84ad');
-    $(".timerEnd").css('box-shadow', '0px 0px 0px #3e84ad');
-    $(".timer").css('background-color', 'transparent');
-    $(".timerEnd").css('background-color', 'transparent');
-    $("timer").css('text-shadow', '0px 0px 0px #C774E8');
-    $("timerEnd").css('text-shadow', '0px 0px 0px #C774E8');
+    visibilityOff(".innerBoxTimer");
+    setShadowOff(".timer", "box");
+    setShadowOff(".timerEnd", "box");
+    setShadowOff(".timer", "text");
+    setShadowOff(".timerEnd", "text");
+    setBackground(".timer", 'transparent');
+    setBackground(".timerEnd", 'transparent');
     isUp = false;
     return;
   }
@@ -106,20 +123,20 @@ $(".buttonToggle").click(function(){
 $(".buttonSettings").click(function(){
   if (settingsOut == false){
     $(".timerSettings").stop(false,false).animate({ right: '-225px' });
-    $(".timerSettings").css('visibility', 'visible');
-    $(".innerBoxSettings").css('visibility', 'visible');
-    $(".timerSettings").css('background-color', 'black');
-    $(".timerSettings").css('box-shadow', '0px 0px 75px #3e84ad');
-    $(".timerSettings").css('text-shadow', '0px 0px 40px #C774E8');
+    visibilityOn(".timerSettings");
+    visibilityOn(".innerBoxSettings");
+    setBackground(".timerSettings", "black");
+    setShadowOn(".timerSettings", "box");
+    setShadowOn(".timerSettings", "text");
     settingsOut = true;
     return;
   }
   if (settingsOut == true){
     $(".timerSettings").stop(false,false).animate({ right: '20px' });
-    $(".innerBoxSettings").css('visibility', 'hidden');
-    $(".timerSettings").css('background-color', 'transparent');
-    $(".timerSettings").css('box-shadow', '0px 0px 0px #3e84ad');
-    $(".timerSettings").css('text-shadow', '0px 0px 0px #C774E8');
+    visibilityOff(".innerBoxSettings");
+    setBackground(".timerSettings", "transparent");
+    setShadowOff(".timerSettings", "box");
+    setShadowOff(".timerSettings", "text");
     settingsOut = false;
     return;
   }
@@ -147,25 +164,38 @@ function updateClock ( ){
 
     endTimeCheck();
 
-    if (currentHours > 12 || futureHours > 12){
+    if (currentHours > 12){
       currentHours = currentHours - 12;
-      futureHours = futureHours -12;
     }
 
+    if (futureHours > 12){
+      futureHours = futureHours -12;
+    }
     if (currentHours == 0){
       currentHours = 12;
     }
     //Here                                                                                                 //<Over there
-    if(currentHours < 10){
+    if(currentHours < 10 && currentHours > 0){
       currentHours = "0" + currentHours;
     }
 
-    if (currentSeconds < 10){
+    if(futureHours < 10 && futureHours > 0){
+      futureHours = "0" + futureHours;
+    }
+
+    if (futureHours == "00") {
+      futureHours = 12;
+    }
+    
+    if (currentSeconds < 10 ){
       currentSeconds = "0" + currentSeconds;
     }
 
     if (currentMinutes < 10) {
       currentMinutes = "0" + currentMinutes;
+    }
+    if (futureMinutes < 10) {
+      futureMinutes = "0" + futureMinutes;
     }
 
     if (futureMinutes > 60 ) {
@@ -185,9 +215,6 @@ function updateClock ( ){
       futureMinutes = currentMinutes;
     }
 
-    if(futureHours < 10){
-      futureHours = "0" + futureHours;
-    }
 
     futureTime = futureHours + ":" + futureMinutes + ":" + currentSeconds;
     currentTimeTab = currentHours + ":" + currentMinutes + ":" + currentSeconds;
