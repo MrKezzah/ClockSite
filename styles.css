@@ -9,7 +9,7 @@ html{
 
 @font-face {
   font-family: "alienEncounters";
-  src: url('fonts/Alien-Encounters-Regular.ttf') format('truetype');
+  src: url('fonts/Alien-Encounters-Solid-Regular.ttf') format('truetype');
 }
 
 @font-face {
@@ -69,10 +69,11 @@ h1, h4{
 
 .clockHM{
   width: 400px;
+  padding-right: 25px;
 }
 
 h4{
-  padding-left: 30px;
+  padding-left: 15px;
   width: 80px;
   font-size: 48px;
   margin: auto;
@@ -82,6 +83,7 @@ h4{
 
 .timer,.timerEnd{
   top: 0px;
+  width: 200px;
 }
 
 .timer,.timerEnd, .timerSettings{
@@ -97,14 +99,12 @@ h4{
 
 .timer{
   left: 0;
-  width: 175px;
   border-radius: 20px 20px 0px 0px;
   /*box-shadow: 0px 0px 75px #3e84ad;*/
 }
 
 .timerEnd{
   right: 0;
-  width: 175px;
   border-radius: 20px 20px 0px 0px;
   /*box-shadow: 0px 0px 75px #3e84ad;*/
 }
@@ -116,7 +116,7 @@ h4{
   width: 100%;
   height: 100%;
   box-shadow: inset 0 0 50px #3e84ad;
-  border-radius: 20px 20px 0px 0px;
+  border-radius: 15px 15px 0px 0px;
   margin: 0 auto;
   transform: translate(-15px, -15px);
 }
@@ -243,7 +243,7 @@ h3{
 .buttonToggle{
   text-align: center;
   color: #FF6AD5;
-  width: 155px;
+  width: 175px;
   font-family: "alienEncounters";
   margin: 0 auto;
   border: 3px solid #94D0FF;
@@ -270,7 +270,7 @@ h3{
   display: run-in;
   text-align: center;
   color: #FF6AD5;
-  width: 155px;
+  width: 175px;
   font-family: "alienEncounters";
   margin: 0 auto;
   border: 3px solid #94D0FF;

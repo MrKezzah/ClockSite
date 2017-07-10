@@ -8,32 +8,45 @@ var endTime;
 
 $(document).ready(function(){
   setInterval(updateClock, 1000);
-  $(".buttonTimer").css('visibility', 'visible');
+  toggleVisibility('.buttonTimer' /*false*/);
   $(".buttonTimer").mouseenter(function(){
-    $(".buttonTimer").stop(false,false).fadeTo('fast' , 1);
+    mouseFade(".buttonTimer", "fast", 1);
   });
   $(".buttonTimer").mouseleave(function(){
-    $(".buttonTimer").stop(false,false).fadeTo('fast' , 0.2);
+    mouseFade(".buttonTimer", "fast", 0.2);
   });
   $(".name").mouseenter(function(){
-    $(".name").stop(false,false).fadeTo('slow' , 1);
+    mouseFade(".name", "slow", 1);
   });
   $(".name").mouseleave(function(){
-    $(".name").stop(false,false).fadeTo('slow' , 0.2);
+    mouseFade(".name", "slow", 0.2);
   });
   $(".toggleHolder").mouseenter(function(){
-    $(".toggleHolder").stop(false,false).fadeTo('fast' , 1);
+    mouseFade(".toggleHolder", "fast", 1);
   });
   $(".toggleHolder").mouseleave(function(){
-    $(".toggleHolder").stop(false,false).fadeTo('fast' , 0.2);
+    mouseFade(".toggleHolder", "fast", 0.2);
   });
   $(".settingsHolder").mouseenter(function(){
-    $(".settingsHolder").stop(false,false).fadeTo('fast' , 1);
+    mouseFade(".settingsHolder", "fast", 1);
   });
   $(".settingsHolder").mouseleave(function(){
-    $(".settingsHolder").stop(false,false).fadeTo('fast' , 0.2);
+    mouseFade(".settingsHolder", "fast", 0.2);
   });
 });
+
+function mouseFade(element, speed, opacity){
+  $(element).stop(false,false).fadeTo(speed , opacity);
+}
+
+function toggleVisibility(element /*toggleable*/){
+  if($(element).css('visibility', 'hidden')){
+    $(element).css('visibility', 'visible');
+  }
+  else if ($(element).css('visibility', 'visible')) {
+    $(element).css('visibility', 'hidden');
+  }
+}
 
 $(".buttonTimer").click(function(){
   if ( $(".toggleHolder").css('visibility', 'hidden')) {
@@ -175,8 +188,6 @@ function updateClock ( ){
     if(futureHours < 10){
       futureHours = "0" + futureHours;
     }
-    // TODO: Fix for when futureMinutes is between 61 and 69
-
 
     futureTime = futureHours + ":" + futureMinutes + ":" + currentSeconds;
     currentTimeTab = currentHours + ":" + currentMinutes + ":" + currentSeconds;
