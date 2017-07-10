@@ -112,6 +112,16 @@ $(".buttonSettings").click(function(){
   }
 });
 
+function endTimeCheck(){
+  if(endTime >60){
+    $("#endTime").val(60);
+  }
+
+  if(endTime < 0){
+    $("#endTime").val(0);
+  }
+}
+
 function updateClock ( ){
  	  currentTime = new Date ( );
     endTime = $("#endTime").val();
@@ -119,18 +129,10 @@ function updateClock ( ){
   	var currentMinutes = currentTime.getMinutes ( );
   	var currentSeconds = currentTime.getSeconds ( );
     //Have to use currentTime.getHours again for futureHours because currentHours gets turned into a string down \/\/ there from 1am-9am and 1pm-9pm, and you end up with 081:24:00pm
-    var futureHours = currentTime.getHours() + 1;
+    var futureHours = currentTime.getHours();
     var futureMinutes = currentTime.getMinutes() + parseInt(endTime);
 
-    if(endTime >60){
-      endTime = 60;
-      $("#endTime").val(endTime);
-    }
-
-    if(endTime < 0){
-      endTime = 0;
-      $("#endTime").val(endTime);
-    }
+    endTimeCheck();
 
     if (currentHours > 12 || futureHours > 12){
       currentHours = currentHours - 12;
@@ -145,10 +147,6 @@ function updateClock ( ){
       currentHours = "0" + currentHours;
     }
 
-    if(futureHours < 10){
-      futureHours = "0" + futureHours;
-    }
-
     if (currentSeconds < 10){
       currentSeconds = "0" + currentSeconds;
     }
@@ -157,19 +155,30 @@ function updateClock ( ){
       currentMinutes = "0" + currentMinutes;
     }
 
-    if (futureMinutes < 10) {
-      futureMinutes = "0" + futureMinutes;
-    }
-
-    if (futureMinutes >59 ) {
+    if (futureMinutes > 60 ) {
+      futureHours = futureHours + 1;
       futureMinutes = futureMinutes - 60;
-      futureTime = futureHours + ":0" + futureMinutes + ":" + currentSeconds;
+      if (futureMinutes < 10) {
+        futureMinutes = "0" + futureMinutes;
+      }
     }
 
-
-    else{
-      futureTime = currentHours + ":" + futureMinutes + ":" + currentSeconds;
+    if (futureMinutes == 60) {
+      futureHours = futureHours + 1;
+      futureMinutes = "00";
     }
+
+    if (endTime == 60) {
+      futureMinutes = currentMinutes;
+    }
+
+    if(futureHours < 10){
+      futureHours = "0" + futureHours;
+    }
+    // TODO: Fix for when futureMinutes is between 61 and 69
+
+
+    futureTime = futureHours + ":" + futureMinutes + ":" + currentSeconds;
     currentTimeTab = currentHours + ":" + currentMinutes + ":" + currentSeconds;
   	var currentTimeHrMin = currentHours + ":" + currentMinutes;
     var currentTimeSec = currentSeconds;
