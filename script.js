@@ -161,53 +161,33 @@ function updateClock ( ){
     //Have to use currentTime.getHours again for futureHours because currentHours gets turned into a string down \/\/ there from 1am-9am and 1pm-9pm, and you end up with 081:24:00pm
     var futureHours = currentTime.getHours();
     var futureMinutes = currentTime.getMinutes() + parseInt(endTime);
+    var ampm = "AP";
 
     endTimeCheck();
-
     if (currentHours > 12){
-      currentHours = currentHours - 12;
+      ampm = "PM";
     }
 
-    if (futureHours > 12){
-      futureHours = futureHours -12;
-    }
-    if (currentHours == 0){
-      currentHours = 12;
-    }
-    //Here                                                                                                 //<Over there
-    if(currentHours < 10 && currentHours > 0){
-      currentHours = "0" + currentHours;
-    }
-
-    if(futureHours < 10 && futureHours > 0){
-      futureHours = "0" + futureHours;
-    }
-
-    if (futureHours == "00") {
-      futureHours = 12;
-    }
-    
-    if (currentSeconds < 10 ){
-      currentSeconds = "0" + currentSeconds;
-    }
-
-    if (currentMinutes < 10) {
-      currentMinutes = "0" + currentMinutes;
-    }
-    if (futureMinutes < 10) {
-      futureMinutes = "0" + futureMinutes;
+    if (currentHours < 12) {
+      ampm = "AM";
     }
 
     if (futureMinutes > 60 ) {
-      futureHours = futureHours + 1;
+      futureHours = parseInt(futureHours) + 1;
       futureMinutes = futureMinutes - 60;
+      if(futureHours < 10){
+        futureHours = "0" + futureHours;
+      }
       if (futureMinutes < 10) {
         futureMinutes = "0" + futureMinutes;
       }
     }
 
     if (futureMinutes == 60) {
-      futureHours = futureHours + 1;
+      futureHours = parseInt(futureHours) + 1;
+      if(futureHours < 10){
+        futureHours = "0" + futureHours;
+      }
       futureMinutes = "00";
     }
 
@@ -215,12 +195,69 @@ function updateClock ( ){
       futureMinutes = currentMinutes;
     }
 
-
+    currentHours = checkHours(currentHours);
+    currentMinutes = checkMinSec(currentMinutes);
+    currentSeconds = checkMinSec(currentSeconds);
+    futureHours = checkHours(futureHours);
+    futureMinutes = checkMinSec(futureMinutes);
     futureTime = futureHours + ":" + futureMinutes + ":" + currentSeconds;
     currentTimeTab = currentHours + ":" + currentMinutes + ":" + currentSeconds;
   	var currentTimeHrMin = currentHours + ":" + currentMinutes;
-    var currentTimeSec = currentSeconds;
+    $(".clockAMPM").html(ampm);
    	$(".clockHM").html(currentTimeHrMin);
-    $(".clockSec").html(currentTimeSec)
-    $(".clockTab").html(currentTimeTab)
+    $(".clockSec").html(currentSeconds);
+    $(".clockTab").html(currentTimeTab);
+    if(currentHours == 11){
+      $(".clockHM").css("padding-left", "40px");
+      $(".clockHM").css("padding-right", "0px");
+    }
+    else{
+      $(".clockHM").css("padding-right", "25px");
+    }
+ }
+
+function checkMinSec(minSec){
+  minSec = parseInt(minSec);
+  if (minSec < 10) {
+    minSec = "0" + minSec;
+    return minSec;
+  }
+
+  else{
+    return minSec;
+  }
+}
+
+ function checkHours(hours){
+   hours = parseInt(hours);
+
+   if(hours > 12){
+     hours = hours - 12;
+     if (hours < 10){
+       hours = "0" + hours;
+       return hours;
+     }
+     else {
+       return hours;
+     }
+   }
+
+   if (hours == 0) {
+     hours = 12;
+     return hours;
+   }
+
+   if (hours == "00") {
+     hours = 12;
+     return hours;
+   }
+
+   if(hours < 10 && hours > 0){
+     hours = "0" + hours;
+     return hours;
+   }
+
+   else{
+     return hours;
+   }
  }
