@@ -10,34 +10,56 @@
   </head>
   <body>
     <div class="main">
-      <div class="timer">
-        <div class="innerBoxTimer">
+      <div class="timer bordered">
+        <div id="innerBoxTimer1" class="innerBox">
         </div>
         <h2>Captured Time:</h2>
         <h5 class="timerClock">00:00:00</h5>
       </div>
-      <div class="timerEnd">
-        <div class="innerBoxTimer">
+      <div class="timerEnd bordered">
+        <div id="innerBoxTimer2" class="innerBox">
         </div>
         <h2>End Time:</h2>
         <h5 class="timerEndClock">00:00:00</h5>
       </div>
-      <div class="timerSettings">
-        <div class="innerBoxSettings">
+      <div class="timerSettings bordered">
+        <div id="innerBoxSettings" class="innerBox">
         </div>
         <h5>Settings</h5>
         <h2>End Time: </h2>
         <p><input type="text" id="endTime" value="5" min="0" max="60"/> (mins)</p>
+        <h2>Text:</h2>
+        <table class="colorSelector">
+          <tr>
+            <td id="redText"></td>
+            <td id="orangeText"></td>
+            <td id="greenText"></td>
+            <td id="blueText"></td>
+            <td id="pinkText"></td>
+            <td id="whiteText"></td>
+          </tr>
+        </table>
+        <h2>Border:</h2>
+        <table class="colorSelector">
+          <tr>
+            <td id="redBorder"></td>
+            <td id="orangeBorder"></td>
+            <td id="greenBorder"></td>
+            <td id="blueBorder"></td>
+            <td id="pinkBorder"></td>
+            <td id="whiteBorder"></td>
+          </tr>
+        </table>
       </div>
-      <div class="mainClock">
-        <div class="innerBox">
+      <div class="mainClock bordered">
+        <div id="innerBoxMain" class="innerBox">
         <p></p>
       </div>
         <h1 class="clockHM"></h1>
         <h4 class="clockSec"></h4>
         <h4 class="clockAMPM">--</h4>
       </div>
-      <div class="buttonTimer">
+      <div class="buttonTimer bordered">
           <h3>Set Time</h3>
       </div>
     </div>
@@ -45,12 +67,12 @@
       <p>Mr Kezzah</p>
     </div>
     <div class="settingsHolder">
-      <div class="buttonSettings">
+      <div class="buttonSettings bordered">
           <h3>Settings</h3>
       </div>
     </div>
     <div class="toggleHolder">
-      <div class="buttonToggle">
+      <div class="buttonToggle bordered">
           <h3>Toggle Timers</h3>
       </div>
     </div>
