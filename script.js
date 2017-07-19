@@ -75,7 +75,7 @@ function visibilityOff(element){
 
 function setShadowOn(element, shadowType, shadowColor) {
   if(shadowType == "box"){
-    $(element).css('box-shadow', '0px 0px 75px' + shadowColor);
+    $(element).css('box-shadow', '0px 0px 75px' + shadowColor +", inset 0px 0px 50px" + shadowColor);
 
   }
   if(shadowType == "text"){
@@ -152,16 +152,16 @@ $(".buttonTimer").click(function(){
   if (isUp == false) {
     visibilityOn(".timer");
     visibilityOn(".timerEnd");
-    $(".timer").stop(false,false).animate({ top: '-100px' });
-    $(".timerEnd").stop(false,false).animate({ top: '-100px' });
-    visibilityOn("#innerBoxTimer1");
-    visibilityOn("#innerBoxTimer2");
+    $(".timer").stop(false,false).animate({ top: '-100px' }, function(){
+      $(".timer").css("z-index", "0");
+    });
+    $(".timerEnd").stop(false,false).animate({ top: '-100px' }, function(){
+      $(".timerEnd").css("z-index", "0");
+    });
     setShadowOn(".timer", "box", boxShadowColor);
     setShadowOn(".timerEnd", "box", boxShadowColor);
     setShadowOn(".timer", "text", textShadowColor);
     setShadowOn(".timerEnd", "text", textShadowColor);
-    setBackground(".timer", 'black');
-    setBackground(".timerEnd", 'black');
     isUp = true;
     return;
   }
@@ -169,30 +169,28 @@ $(".buttonTimer").click(function(){
 
 $(".buttonToggle").click(function(){
   if (isUp == false) {
-    $(".timer").stop(false,false).animate({ top: '-100px' });
-    $(".timerEnd").stop(false,false).animate({ top: '-100px' });
-    visibilityOn("#innerBoxTimer1")
-    visibilityOn("#innerBoxTimer2");;
+    $(".timer").stop(false,false).animate({ top: '-100px' }, function(){
+      $(".timer").css("z-index", "0");
+    });
+    $(".timerEnd").stop(false,false).animate({ top: '-100px' }, function(){
+      $(".timerEnd").css("z-index", "0");
+    });
     setShadowOn(".timer", "box", boxShadowColor);
     setShadowOn(".timerEnd", "box", boxShadowColor);
     setShadowOn(".timer", "text", textShadowColor);
     setShadowOn(".timerEnd", "text", textShadowColor);
-    setBackground(".timer", 'black');
-    setBackground(".timerEnd", 'black');
     isUp = true;
     return;
   }
   if (isUp == true){
     $(".timer").stop(false,false).animate({ top: '10px' });
     $(".timerEnd").stop(false,false).animate({ top: '10px' });
-    visibilityOff("#innerBoxTimer1");
-    visibilityOff("#innerBoxTimer2");
     setShadowOff(".timer", "box", boxShadowColor);
     setShadowOff(".timerEnd", "box", boxShadowColor);
     setShadowOff(".timer", "text", textShadowColor);
     setShadowOff(".timerEnd", "text", textShadowColor);
-    setBackground(".timer", 'transparent');
-    setBackground(".timerEnd", 'transparent');
+    $(".timer").css("z-index", "-1");
+    $(".timerEnd").css("z-index", "-1");
     isUp = false;
     return;
   }
@@ -200,10 +198,10 @@ $(".buttonToggle").click(function(){
 
 $(".buttonSettings").click(function(){
   if (settingsOut == false){
-    $(".timerSettings").stop(false,false).animate({ right: '-225px' });
+    $(".timerSettings").stop(false,false).animate({ right: '-225px' }, function(){
+      $(".timerSettings").css("z-index", "0");
+    });
     visibilityOn(".timerSettings");
-    visibilityOn("#innerBoxSettings");
-    setBackground(".timerSettings", "black");
     setShadowOn(".timerSettings", "box", boxShadowColor);
     setShadowOn(".timerSettings", "text", textShadowColor);
     settingsOut = true;
@@ -211,10 +209,9 @@ $(".buttonSettings").click(function(){
   }
   if (settingsOut == true){
     $(".timerSettings").stop(false,false).animate({ right: '20px' });
-    visibilityOff("#innerBoxSettings");
-    setBackground(".timerSettings", "transparent");
     setShadowOff(".timerSettings", "box", boxShadowColor);
     setShadowOff(".timerSettings", "text", textShadowColor);
+    $(".timerSettings").css("z-index", "-1");
     settingsOut = false;
     return;
   }
@@ -236,7 +233,6 @@ function updateClock ( ){
   	var currentHours = currentTime.getHours ( );
   	var currentMinutes = currentTime.getMinutes ( );
   	var currentSeconds = currentTime.getSeconds ( );
-    //Have to use currentTime.getHours again for futureHours because currentHours gets turned into a string down \/\/ there from 1am-9am and 1pm-9pm, and you end up with 081:24:00pm
     var futureHours = currentTime.getHours();
     var futureMinutes = currentTime.getMinutes() + parseInt(endTime);
     var ampm = "AP";
