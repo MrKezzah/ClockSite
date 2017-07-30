@@ -208,8 +208,10 @@ td{
   text-shadow: 2px 2px 1px #00FFFF, 5px 4px 1px #7E0058, 6px 5px 1px #006464, 0px 0px 60px #A40073;
 }
 
-.name p{
+.name a{
+  color: inherit;
   margin: auto;
+  text-decoration: none;
 }
 
 .toggleHolder, .settingsHolder{

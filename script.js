@@ -11,35 +11,17 @@ var textShadowColor = "#A40073";
 $(document).ready(function(){
   setInterval(updateClock, 1000);
   visibilityOn('.buttonTimer');
-  $(".buttonTimer").mouseenter(function(){
-    mouseFade(".buttonTimer", "fast", 1);
+  $(".buttonTimer, .toggleHolder, .settingsHolder, td").mouseenter(function(){
+    mouseFade(this, "fast", 1);
   });
-  $(".buttonTimer").mouseleave(function(){
-    mouseFade(".buttonTimer", "fast", 0.2);
+  $(".buttonTimer, .toggleHolder, .settingsHolder, td").mouseleave(function(){
+    mouseFade(this, "fast", 0.2);
   });
   $(".name").mouseenter(function(){
     mouseFade(".name", "slow", 1);
   });
   $(".name").mouseleave(function(){
     mouseFade(".name", "slow", 0.2);
-  });
-  $(".toggleHolder").mouseenter(function(){
-    mouseFade(".toggleHolder", "fast", 1);
-  });
-  $(".toggleHolder").mouseleave(function(){
-    mouseFade(".toggleHolder", "fast", 0.2);
-  });
-  $(".settingsHolder").mouseenter(function(){
-    mouseFade(".settingsHolder", "fast", 1);
-  });
-  $(".settingsHolder").mouseleave(function(){
-    mouseFade(".settingsHolder", "fast", 0.2);
-  });
-  $("td").mouseenter(function(){
-    mouseFade(this,"fast", 1);
-  });
-  $("td").mouseleave(function(){
-    mouseFade(this,"fast", 0.2);
   });
 });
 
@@ -147,21 +129,14 @@ $("#whiteText").click(function(){
 $(".buttonTimer").click(function(){
   $(".timerClock").html(currentTimeTab);
   $(".timerEndClock").html(futureTime);
-  visibilityOn(".toggleHolder");
-  visibilityOn(".settingsHolder");
+  visibilityOn(".toggleHolder, .settingsHolder");
   if (isUp == false) {
-    visibilityOn(".timer");
-    visibilityOn(".timerEnd");
-    $(".timer").stop(false,false).animate({ top: '-100px' }, function(){
-      $(".timer").css("z-index", "0");
+    visibilityOn(".timer, .timerEnd");
+    $(".timer, .timerEnd").stop(false,false).animate({ top: '-100px' }, function(){
+      $(".timer, .timerEnd").css("z-index", "0");
     });
-    $(".timerEnd").stop(false,false).animate({ top: '-100px' }, function(){
-      $(".timerEnd").css("z-index", "0");
-    });
-    setShadowOn(".timer", "box", boxShadowColor);
-    setShadowOn(".timerEnd", "box", boxShadowColor);
-    setShadowOn(".timer", "text", textShadowColor);
-    setShadowOn(".timerEnd", "text", textShadowColor);
+    setShadowOn(".timer, .timerEnd", "box", boxShadowColor);
+    setShadowOn(".timer, .timerEnd", "text", textShadowColor);
     isUp = true;
     return;
   }
@@ -169,28 +144,19 @@ $(".buttonTimer").click(function(){
 
 $(".buttonToggle").click(function(){
   if (isUp == false) {
-    $(".timer").stop(false,false).animate({ top: '-100px' }, function(){
-      $(".timer").css("z-index", "0");
+    $(".timer, .timerEnd").stop(false,false).animate({ top: '-100px' }, function(){
+      $(".timer, .timerEnd").css("z-index", "0");
     });
-    $(".timerEnd").stop(false,false).animate({ top: '-100px' }, function(){
-      $(".timerEnd").css("z-index", "0");
-    });
-    setShadowOn(".timer", "box", boxShadowColor);
-    setShadowOn(".timerEnd", "box", boxShadowColor);
-    setShadowOn(".timer", "text", textShadowColor);
-    setShadowOn(".timerEnd", "text", textShadowColor);
+    setShadowOn(".timer, .timerEnd", "box", boxShadowColor);
+    setShadowOn(".timer, .timerEnd", "text", textShadowColor);
     isUp = true;
     return;
   }
   if (isUp == true){
-    $(".timer").stop(false,false).animate({ top: '10px' });
-    $(".timerEnd").stop(false,false).animate({ top: '10px' });
-    setShadowOff(".timer", "box", boxShadowColor);
-    setShadowOff(".timerEnd", "box", boxShadowColor);
-    setShadowOff(".timer", "text", textShadowColor);
-    setShadowOff(".timerEnd", "text", textShadowColor);
-    $(".timer").css("z-index", "-1");
-    $(".timerEnd").css("z-index", "-1");
+    $(".timer, .timerEnd").stop(false,false).animate({ top: '10px' });
+    setShadowOff(".timer, .timerEnd", "box", boxShadowColor);
+    setShadowOff(".timer, .timerEnd", "text", textShadowColor);
+    $(".timer, .timerEnd").css("z-index", "-1");
     isUp = false;
     return;
   }
